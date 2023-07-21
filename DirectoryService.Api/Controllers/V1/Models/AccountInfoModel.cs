@@ -75,8 +75,10 @@ public class AccountInfoModel
 
         public LocationModel(UserLocationDto location)
         {
-            Root = location.Domain != null ? new DomainInfoModel(location.Domain!, false) : null;
-            Path = location.Domain != null ? location.Path : null;
+            if (location != null){
+                Root = location.Domain != null ? new DomainInfoModel(location.Domain!, false) : null;
+                Path = location.Domain != null ? location.Path : null;
+            }
         }
     }
 }
