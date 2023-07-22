@@ -33,8 +33,15 @@ public sealed class DomainsController : V1ApiController
     [Authorise]
     public async Task<IActionResult> GetDomains()
     {
-        //TODO
-        throw new NotImplementedException();
+        var domains = await _domainService.GetDomains();
+        var domain_list = new List<DomainInfoModel>();
+        domains.ForEach(d => {
+            domain_list.Add(new DomainInfoModel(d));
+        });
+        return Success(new
+        {
+            Domains = domain_list
+        });
     }
 
     /// <summary>

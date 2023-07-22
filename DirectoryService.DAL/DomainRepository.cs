@@ -65,6 +65,14 @@ public class DomainRepository : BaseRepository<Domain>, IDomainRepository
 
         return entity;
     }
+
+    public async Task<List<Domain>> GetDomains()
+    {
+        using var con = await DbContext.CreateConnectionAsync();
+        List<Domain> entities = (List<Domain>)await con.QueryAsync<Domain>(@"SELECT * FROM domains");
+
+        return entities;
+    }
     
     public async Task<Domain?> Update(Domain entity)
     {

@@ -67,6 +67,11 @@ public class DomainService
         return false;
     }
 
+    public async Task<List<Domain>> GetDomains()
+    {
+        return await _domainRepository.GetDomains();
+    }
+
     public async Task<Domain?> FindById(Guid id)
     {
         return await _domainRepository.Retrieve(id);
